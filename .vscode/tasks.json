@@ -1,0 +1,64 @@
+{
+  "version": "2.0.0",
+  "linux": {
+    "options": {
+      "shell": {
+        "executable": "/usr/bin/pwsh",
+        "args": ["-NoProfile", "-Command"]
+      }
+    }
+  },
+  "osx": {
+    "options": {
+      "shell": {
+        "executable": "/usr/local/bin/pwsh",
+        "args": ["-NoProfile", "-Command"]
+      }
+    }
+  },
+  "windows": {
+    "options": {
+      "shell": {
+        "executable": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+        "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-Command"]
+      }
+    }
+  },
+  "tasks": [
+    {
+      "label": "build",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/src/PsdEdit.sln",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "publish",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "msbuild",
+        "${workspaceFolder}/src/PsdEdit.sln",
+        "/p:Configuration=Debug"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "watch",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "watch",
+        "run",
+        "--project",
+        "${workspaceFolder}/src/PsdEdit.sln"
+      ],
+      "problemMatcher": "$msCompile"
+    }
+  ]
+}

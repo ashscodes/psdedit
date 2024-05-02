@@ -1,0 +1,40 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "PsdEdit Sample",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/src/PsdEdit.Sample/bin/Debug/net8.0/PsdEdit.Sample.dll",
+      "args": ["sample/SampleModule.psd1"],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "PsdEdit Debugger",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "publish",
+      "program": "pwsh",
+      "args": [
+        "-NoExit",
+        "-NoProfile",
+        "-Command",
+        "& { ",
+        "Add-Type -Path src/PsdEdit/bin/Debug/net8.0/PsdEdit.dll;",
+        "}"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "stopAtEntry": false
+    },
+    {
+      "name": ".NET Core Attach",
+      "type": "coreclr",
+      "request": "attach"
+    }
+  ]
+}
